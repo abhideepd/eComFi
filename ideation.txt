@@ -1,0 +1,3 @@
+although, its a basic ecommerse app, we can extend it to, tracking multiple ecommerse application, track my orders and order status, in a "one stop" form. Also, track prices of different products and see the lowerst prices and stuff, a simple saas product
+
+-- can't get details of a particular user.
