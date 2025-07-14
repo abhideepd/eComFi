@@ -4,6 +4,9 @@ import com.project.eCommerce.Entity.Product;
 import com.project.eCommerce.Entity.ProductCategory;
 import com.project.eCommerce.ResponseDTOs.ProductCategoryResponseDTO;
 import com.project.eCommerce.ResponseDTOs.ProductResponseDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -50,4 +53,10 @@ public class ObjectMapperService {
         return productCategoryResponseDTO;
     }
 
+    public Page<ProductResponseDTO> mapToProductResponseDTO(Page<Product> pageableProducts) {
+        List<Product> products=pageableProducts.getContent();
+        List<ProductResponseDTO> productsResponseFormat=mapToProductResponseDTO(products);
+        Page<ProductResponseDTO> pagedProducts=new PageImpl<>(productsResponseFormat, pageableProducts.getPageable(), products.size());
+        return  pagedProducts;
+    }
 }

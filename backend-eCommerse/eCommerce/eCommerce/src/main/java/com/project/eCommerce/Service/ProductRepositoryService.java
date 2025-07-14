@@ -46,14 +46,12 @@ public class ProductRepositoryService {
 
     public Page<ProductResponseDTO> getAllProductsByCategoryId(Long id, int page, int size, String sortBy){
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
-//        Page<Product> products = productService.getAllProducts(pageable);
         if(id==0){
-//            List<Product> products=productRepository.findAll();
             Page<Product> products=productRepository.findAll(pageable);
             return objectMapperService.mapToProductResponseDTO(products);
         }
         else{
-            List<Product> products=productRepository.findByCategoryId(id);
+            Page<Product> products=productRepository.findByCategoryId(id, pageable);
             return objectMapperService.mapToProductResponseDTO(products);
         }
     }

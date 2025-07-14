@@ -30,7 +30,7 @@ public class ProductController {
         return ResponseEntity.ok(productRepositoryService.getAllProductsByCategoryId(id));
     }
 
-    @GetMapping("/search/findByCategoryId")
+    @GetMapping("/search/pagedFindByCategoryId")
     public ResponseEntity<Page<ProductResponseDTO>> getAllProductsByCategoryId(
                                                                         @RequestParam Long id,
                                                                         @RequestParam(defaultValue = "0")int page,
