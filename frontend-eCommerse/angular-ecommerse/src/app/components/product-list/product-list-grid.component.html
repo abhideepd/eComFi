@@ -1,0 +1,26 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <div class="row">
+        <div *ngFor="let tempProduct of products" class="col-md-3">
+          <div class="product-box">
+
+            <a (click)="goInsideProduct(tempProduct)">
+              <img src="{{tempProduct.imageUrl}}" class="img-responsive">
+            </a>
+
+            <a>
+              <h1>{{tempProduct.name}}</h1>
+            </a>
+
+            <div class="price">{{ tempProduct.unitPrice | currency:'USD'}}</div>
+            <a href="#" class="primary-btn">Add to cart</a>
+          </div>
+        </div>
+        <div class="alert alert-warning col-md-12" role="alert" *ngIf="products.length==0">
+          Sorry! No products found
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
