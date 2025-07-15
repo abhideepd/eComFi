@@ -1,0 +1,21 @@
+<div class="main-content">
+  <p>product-details works!</p>
+  <div class="product-box">
+
+    <img src="{{currentProduct?.imageUrl}}" class="img-responsive"/>
+    <h1>{{currentProduct?.name}}</h1>
+
+    <div class="price">
+      {{ currentProduct?.unitPrice | currency:'USD'}}
+    </div>
+
+    <div>
+      {{currentProduct?.description}}
+    </div>
+
+    <a href="#" class="primary-btn">Add to cart</a>
+    <button (click)="goBack()" class="primary-btn">Go Back</button>
+
+  </div>
+</div>
+

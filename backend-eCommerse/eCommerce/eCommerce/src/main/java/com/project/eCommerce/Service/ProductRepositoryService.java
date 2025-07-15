@@ -6,6 +6,10 @@ import com.project.eCommerce.ResponseDTOs.ProductCategoryResponseDTO;
 import com.project.eCommerce.ResponseDTOs.ProductResponseDTO;
 import com.project.eCommerce.dao.ProductCategoryRepository;
 import com.project.eCommerce.dao.ProductRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -36,6 +40,18 @@ public class ProductRepositoryService {
         }
         else{
             List<Product> products=productRepository.findByCategoryId(id);
+            return objectMapperService.mapToProductResponseDTO(products);
+        }
+    }
+
+    public Page<ProductResponseDTO> getAllProductsByCategoryId(Long id, int page, int size, String sortBy){
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        if(id==0){
+            Page<Product> products=productRepository.findAll(pageable);
+            return objectMapperService.mapToProductResponseDTO(products);
+        }
+        else{
+            Page<Product> products=productRepository.findByCategoryId(id, pageable);
             return objectMapperService.mapToProductResponseDTO(products);
         }
     }
